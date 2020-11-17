@@ -11,14 +11,20 @@ public class Main {
         @SuppressWarnings("unused")
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream("Resume.pdf"));
         document.open();
+        document.add(createParagraph());
+        document.add(createTable());
+        document.close();
+    }
 
+    private static Paragraph createParagraph(){
         Font largeBold = new Font(Font.FontFamily.HELVETICA, 32, Font.NORMAL);
-
         Paragraph paragraph = new Paragraph("Resume", largeBold);
         paragraph.setAlignment(Element.ALIGN_CENTER);
         paragraph.setSpacingAfter(50);
-        document.add(paragraph);
+        return paragraph;
+    }
 
+    private static PdfPTable createTable(){
         PdfPTable table = new PdfPTable(2);
 
         table.addCell("First Name");
@@ -31,8 +37,9 @@ public class Main {
         table.addCell("2018-2021 PWSZ Tarnow");
         table.addCell("Summary");
         table.addCell("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat quis purus facilisis tincidunt. Suspendisse vel urna lacus. Morbi dignissim felis at nisl iaculis vehicula.");
-        document.add(table);
 
-        document.close();
+        return table;
     }
+
+
 }
